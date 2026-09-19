@@ -37,14 +37,14 @@
 
         <section class="task-filters">
             <ul class="filters-list">
-                <li class="filter">
-                    <button type="button" data-filter="all">All</button>
+                <li class="filter active">
+                    <button class="filter-button activated" type="button" data-filter="all">All</button>
                 </li>
                 <li class="filter">
-                    <button type="button" data-filter="active">Active</button>
+                    <button class="filter-button" type="button" data-filter="active">Active</button>
                 </li>
                 <li class="filter">
-                    <button type="button" data-filter="completed">Completed</button>
+                    <button class="filter-button" type="button" data-filter="completed">Completed</button>
                 </li>
             </ul>
         </section>
@@ -57,7 +57,7 @@
                         <span class="task-text">Completed task</span>
                     </label>
                     <div class="options">
-                        <span class="task-date">Date</span>
+                        <span class="task-date">14 Sep 2026</span>
                         <button class="edit-task" type="button" aria-label="Edit task">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
                         </button>
@@ -72,7 +72,7 @@
                         <span class="task-text">Remaning task</span>
                     </label>
                     <div class="options">
-                        <span class="task-date">Date</span>
+                        <span class="task-date">9 Sep 2026</span>
                         <button class="edit-task" type="button" aria-label="Edit task">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
                         </button>
@@ -87,7 +87,7 @@
                         <span class="task-text">Another remaning task</span>
                     </label>
                     <div class="options">
-                        <span class="task-date">Date</span>
+                        <span class="task-date">1 Aug 2026</span>
                         <button class="edit-task" type="button" aria-label="Edit task">
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
                         </button>
@@ -99,19 +99,21 @@
             </ul>
         </section>
         
-        <section class="task-summary">
-            <div class="summary-info">
-                <div id="tasks-remaining">Tasks remaining</div> 
-                <div class="statistics">
-                    <span class="total">total</span>
-                    <span class="active">active</span>
-                    <span class="completed">completed</span>
+        <section class="summary-section">
+            <div class="task-summary">
+                <div class="summary-info">
+                    <div class="tasks-remaining">2 tasks remaining</div> 
+                    <div class="statistics">
+                        <span class="total">5 total •</span>
+                        <span class="active">2 active •</span>
+                        <span class="completed">1 completed</span>
+                    </div>
                 </div>
+                <button id="clear-completed-tasks" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
+                    <span>Clear completed tasks</span>
+                </button>
             </div>
-            <button id="clear-completed" type="button">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg>
-                <span>Clear completed</span>
-            </button>
         </section>
     </main>
 

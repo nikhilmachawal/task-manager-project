@@ -18,11 +18,16 @@ body {
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
+button {
+    cursor: pointer;
+}
+
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
 }
 .app-title {
     display: flex;
@@ -54,7 +59,6 @@ header {
     background-color: rgb(197, 197, 197);
     border: none;
     border-radius: 20px;
-    cursor: pointer;
 }
 #theme-toggle svg {
     fill: black;
@@ -65,4 +69,163 @@ header {
 .theme-option.active {
     background-color: white;
     border-radius: 50px;
+}
+
+.task-input, .task-filters, .task-section, .summary-section {
+    padding: 0 100px;
+}
+
+/* Task form */
+#task-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding-bottom: 40px;
+}
+#task-input {
+    font-size: 1.2em;
+    padding: 10px 20px;
+    border: 1px solid grey;
+    border-radius: 8px;
+    flex: 1;
+}
+#task-input:focus {
+    border: none;
+    outline: none;
+    box-shadow: 0 0 10px grey;
+}
+#add-task {
+    font-size: 1.2em;
+    color: #ffffff;
+    background-color: rgb(59, 59, 255);
+    border: none;
+    padding: 10px 30px;
+    border-radius: 8px;
+}
+#add-task:hover {
+    background-color: rgb(118, 118, 255);
+}
+
+/* Task filters */
+.filters-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 20px;
+}
+.filter {
+    list-style: none;
+}
+.filter-button {
+    border: none;
+    border-radius: 100px;
+    color: #ffffff;
+    background-color: rgb(179, 178, 178);
+    padding: 8px 30px;
+    font-size: 1em;
+}
+.filter-button.activated, .filter-button:hover {
+    background-color: rgb(59, 59, 255);
+}
+
+/* Task section */
+.task-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    padding: 5px;
+    background-color: #eef2f7;
+    border-radius: 12px;
+    margin-bottom: 40px;
+}
+.task-list li {
+    list-style: none;
+}
+.task-item {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+.task-item label {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.task-checkbox {
+    height: 18px;
+    width: 18px;
+}
+.task-text {
+    font-size: 1.2em;
+}
+.options {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+.task-date {
+    font-size: 0.8em;
+}
+.edit-task {
+    border: none;
+    background-color: rgba(141, 141, 141, 0.3);
+    border-radius: 8px;
+}
+.edit-task svg {
+    fill: rgb(100, 100, 100);
+    height: 28px;
+    width: 28px;
+    padding: 5px;
+}
+.delete-task {
+    border: none;
+    background-color: rgba(255, 70, 70, 0.3);
+    border-radius: 8px;
+}
+.delete-task svg {
+    fill: rgb(255, 40, 40);
+    height: 28px;
+    width: 28px;
+    padding: 5px;
+}
+
+/* Task summary */
+.task-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tasks-remaining {
+    font-size: 0.9em;
+    color: rgb(30, 30, 30);
+}
+.statistics {
+    font-size: 0.8em;
+    color: rgb(80, 80, 80);
+}
+#clear-completed-tasks {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 70, 70, 0.3);
+}
+#clear-completed-tasks svg {
+    height: 20px;
+    width: 20px;
+    fill: rgb(255, 40, 40);
+}
+#clear-completed-tasks span {
+    font-size: 1.1em;
+    color: rgb(253, 2, 2);
 }
