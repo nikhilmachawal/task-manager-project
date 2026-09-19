@@ -1,5 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+body {
+    font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: #eef2f7;
+}
+.app-content {
+    width: min(90%, 1000px);
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.app-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.logo {
+    height: 60px;
+    width: 60px;
+    overflow: hidden;
+}
+.logo img {
+    height: 110%;
+    width: 110%;
+    object-fit: cover;
+}
+.title {
+    display: flex;
+    flex-direction: column;
+}
+.title p {
+    font-size: 0.85em;
+}
+#theme-toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    background-color: rgb(197, 197, 197);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+#theme-toggle svg {
+    fill: black;
+    padding: 2px;
+    height: 20px;
+    width: 24px;
+}
+.theme-option.active {
+    background-color: white;
+    border-radius: 50px;
 }
