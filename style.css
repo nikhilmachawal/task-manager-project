@@ -38,10 +38,11 @@ header {
     height: 60px;
     width: 60px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 .logo img {
-    height: 110%;
-    width: 110%;
+    height: 100%;
+    width: 100%;
     object-fit: cover;
 }
 .title {
@@ -49,7 +50,7 @@ header {
     flex-direction: column;
 }
 .title p {
-    font-size: 0.85em;
+    font-size: 0.85rem;
 }
 #theme-toggle {
     display: flex;
@@ -84,7 +85,7 @@ header {
     padding-bottom: 40px;
 }
 #task-input {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     padding: 10px 20px;
     border: 1px solid grey;
     border-radius: 8px;
@@ -96,7 +97,7 @@ header {
     box-shadow: 0 0 10px grey;
 }
 #add-task {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     color: #ffffff;
     background-color: rgb(59, 59, 255);
     border: none;
@@ -124,7 +125,7 @@ header {
     color: #ffffff;
     background-color: rgb(179, 178, 178);
     padding: 8px 30px;
-    font-size: 1em;
+    font-size: 1rem;
 }
 .filter-button.activated, .filter-button:hover {
     background-color: rgb(59, 59, 255);
@@ -163,7 +164,7 @@ header {
     width: 18px;
 }
 .task-text {
-    font-size: 1.2em;
+    font-size: 1.2rem;
 }
 .options {
     display: flex;
@@ -203,11 +204,11 @@ header {
     align-items: center;
 }
 .tasks-remaining {
-    font-size: 0.9em;
+    font-size: 0.9rem;
     color: rgb(30, 30, 30);
 }
 .statistics {
-    font-size: 0.8em;
+    font-size: 0.8rem;
     color: rgb(80, 80, 80);
 }
 #clear-completed-tasks {
@@ -228,4 +229,91 @@ header {
 #clear-completed-tasks span {
     font-size: 1.1em;
     color: rgb(253, 2, 2);
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .app-content {
+        min-height: 100vh;
+        width: 100%;
+        margin: 0;
+        padding: 20px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    /* Header */
+    header {
+        padding-bottom: 30px;
+    }
+    .logo {
+        height: 40px;
+        width: 40px;
+    }
+    .title h1 {
+        font-size: 1.5rem;
+    }
+    /* .title p {
+
+    } */
+    #theme-toggle {
+        flex-direction: column;
+    }
+    .task-input, .task-filters, .task-section, .summary-section {
+        padding: 0;
+    }
+    /* Task form */
+    #task-form {
+        padding-bottom: 20px;
+    }
+    #task-input, #add-task {
+        font-size: 1rem;
+        border-radius: 100px;
+    }
+    /* Task Section */
+    .task-list {
+        margin-bottom: 60px;
+    }
+    .task-item {
+        padding: 10px;
+    }
+    .task-item label {
+        flex: 1;
+        gap: 10px;
+    }
+    .task-text {
+        font-size: 1.1rem;
+    }
+    .options {
+        flex-direction: column;
+        gap: 5px;
+    }
+    .task-date {
+        display: none;
+    }
+    /* Task summary */
+    .statistics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        row-gap: 0;
+    }
+    #clear-completed-tasks {
+        gap: 8px;
+    }
+    #clear-completed-tasks span {
+        text-align: start;
+    }
+    .summary-section {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background-color: #ffffff;
+        border-top: 2px solid #eef2f7;
+    }
+    .task-summary {
+        padding: 10px 20px;
+        align-items: stretch;
+    }
 }
