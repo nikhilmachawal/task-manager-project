@@ -11,12 +11,15 @@ body {
     background: #eef2f7;
 }
 .app-content {
+    min-height: calc(100vh - 80px);
     width: min(90%, 1000px);
     margin: 40px auto;
     padding: 30px;
     background: #ffffff;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
 }
 button {
     cursor: pointer;
@@ -116,10 +119,7 @@ header {
     gap: 10px;
     padding-bottom: 20px;
 }
-.filter {
-    list-style: none;
-}
-.filter-button {
+.filter-btn {
     border: none;
     border-radius: 100px;
     color: #ffffff;
@@ -127,7 +127,7 @@ header {
     padding: 8px 30px;
     font-size: 1rem;
 }
-.filter-button.activated, .filter-button:hover {
+.filter-btn.activated, .filter-btn:hover {
     background-color: rgb(59, 59, 255);
 }
 
@@ -140,7 +140,7 @@ header {
     padding: 5px;
     background-color: #eef2f7;
     border-radius: 12px;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 .task-list li {
     list-style: none;
@@ -198,6 +198,9 @@ header {
 }
 
 /* Task summary */
+.summary-section {
+    margin-top: auto;
+}
 .task-summary {
     display: flex;
     justify-content: space-between;
