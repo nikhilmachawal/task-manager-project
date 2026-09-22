@@ -22,6 +22,7 @@ const activeTasks = document.querySelector(".active-count")
 const completedTasks = document.querySelector(".completed-count")
 const clearCompletedBtn = document.querySelector("#clear-completed-tasks")
 
+// Rendering tasks
 function renderTasks() {
     taskList.textContent = ""
 
@@ -80,6 +81,7 @@ function renderTasks() {
 let currentFilter = "all"
 renderTasks()
 
+// Task creation
 taskForm.addEventListener("submit", (event) => {
     event.preventDefault()
 
@@ -97,8 +99,8 @@ taskForm.addEventListener("submit", (event) => {
     taskInput.value = ""
 })
 
+// Task completion
 taskList.addEventListener("change", (event) => {
-    console.log(event.target);
     if (!event.target.matches(".task-checkbox")) return
     const taskItem = event.target.closest(".task-item")
     const taskId = taskItem.dataset.id
@@ -114,9 +116,23 @@ taskList.addEventListener("change", (event) => {
     renderTasks()
 })
 
-function deleteTask() {
-    // Code
-}
+// Edit/delete task
+taskList.addEventListener("click", (event) => {
+    const deleteButton = event.target.closest(".delete-task")
+    const editButton = event.target.closest(".edit-task")
+    // Delete task
+    if (deleteButton) {
+        const taskItem = deleteButton.closest(".task-item");
+        const taskId = taskItem.dataset.id;
+        const index = tasks.findIndex(task => String(task.id) === taskId)
+        tasks.splice(index, 1)
+        renderTasks()
+    }
+    // Edit task
+    if (editButton) {
+        
+    }
+})
 
 
 
