@@ -124,7 +124,7 @@ header {
     border-radius: 100px;
     color: #ffffff;
     background-color: rgb(179, 178, 178);
-    padding: 8px 30px;
+    padding: 8px 20px;
     font-size: 1rem;
 }
 .filter-btn.activated, .filter-btn:hover {
