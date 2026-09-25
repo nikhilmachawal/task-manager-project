@@ -1,4 +1,4 @@
-const tasks = [
+let tasks = [
     {
         id: 1,
         text: "Get Started",
@@ -81,6 +81,23 @@ function renderTasks() {
 let currentFilter = "all"
 renderTasks()
 
+// Theme button
+toggleTheme.addEventListener("click", () => {
+    document.body.classList.toggle("dark")
+})
+
+// Filter button
+filters.forEach(filter => {
+    filter.addEventListener("click", (event) => {
+        filters.forEach(filter => {
+            filter.classList.remove("active")
+        })
+        event.currentTarget.classList.add("active")
+        currentFilter = event.currentTarget.dataset.filter
+        renderTasks()
+    })
+})
+
 // Task creation
 taskForm.addEventListener("submit", (event) => {
     event.preventDefault()
@@ -130,29 +147,14 @@ taskList.addEventListener("click", (event) => {
     }
     // Edit task
     if (editButton) {
-        
+        const taskItem = editButton.closest(".task-item");
+        const taskId = taskItem.dataset.id;
+        const task = tasks.find(task => String(task.id) === taskId)
     }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const checkbox = document.querySelector(".task-checkbox")
-// checkbox.toggleAttribute("checked")
-// checkbox.checked = checkbox.hasAttribute("checked")
+// Clear completed tasks
+clearCompletedBtn.addEventListener("click", () => {
+    tasks = tasks.filter(task => !task.completed)
+    renderTasks()
+})

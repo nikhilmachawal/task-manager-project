@@ -5,17 +5,45 @@
     padding: 0;
     box-sizing: border-box;
 }
+:root {
+    --bg-color: #ffffff;
+    --secondary-bg-color: #eef2f7;
+    --text-color: #000000;
+    --secondary-text-color: #ffffff;
+    --accent-color: #3b3bff;
+    --button-bg-color: #b3b2b2;
+    --button-hover-color: #7676ff;
+    --line-color: #808080;
+    --delete-btn: #fd0202;
+    --delete-btn-bg: #ff46464d;
+    --edit-btn: #646464;
+    --edit-btn-bg: #8d8d8d4d;
+}
+body.dark {
+    --bg-color: #343437;
+    --secondary-bg-color: #4b4a4d;
+    --text-color: #f2f2f2;
+    --secondary-text-color: #c4c4c4;
+    --accent-color: #4b4bff;
+    --button-bg-color: #454545;
+    --button-hover-color: #7777ff;
+    --line-color: #666666;
+    --delete-btn: #fb7878;
+    --delete-btn-bg: #454545;
+    --edit-btn: #dddddd;
+    --edit-btn-bg: #454545;
+}
 body {
     font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     min-height: 100vh;
-    background: #eef2f7;
+    background: var(--secondary-bg-color);
 }
 .app-content {
     min-height: calc(100vh - 80px);
     width: min(90%, 1000px);
     margin: 40px auto;
     padding: 30px;
-    background: #ffffff;
+    background: var(--bg-color);
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
     display: flex;
@@ -36,6 +64,7 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
+    color: var(--text-color);
 }
 .logo {
     height: 60px;
@@ -60,18 +89,18 @@ header {
     justify-content: center;
     align-items: center;
     padding: 3px;
-    background-color: rgb(197, 197, 197);
+    background-color: var(--button-bg-color);
     border: none;
     border-radius: 20px;
 }
 #theme-toggle svg {
-    fill: black;
+    fill: var(--text-color);
     padding: 2px;
     height: 20px;
     width: 24px;
 }
 .theme-option.active {
-    background-color: white;
+    background-color: var(--bg-color);
     border-radius: 50px;
 }
 
@@ -90,25 +119,25 @@ header {
 #task-input {
     font-size: 1.2rem;
     padding: 10px 20px;
-    border: 1px solid grey;
+    border: 1px solid var(--line-color);
     border-radius: 8px;
     flex: 1;
 }
 #task-input:focus {
     border: none;
     outline: none;
-    box-shadow: 0 0 10px grey;
+    box-shadow: 0 0 10px var(--line-color);
 }
 #add-task {
     font-size: 1.2rem;
-    color: #ffffff;
-    background-color: rgb(59, 59, 255);
+    color: var(--secondary-text-color);
+    background-color: var(--accent-color);
     border: none;
     padding: 10px 30px;
     border-radius: 8px;
 }
 #add-task:hover {
-    background-color: rgb(118, 118, 255);
+    background-color: var(--button-hover-color);
 }
 
 /* Task filters */
@@ -122,13 +151,16 @@ header {
 .filter-btn {
     border: none;
     border-radius: 100px;
-    color: #ffffff;
-    background-color: rgb(179, 178, 178);
+    color: var(--secondary-text-color);
+    background-color: var(--button-bg-color);
     padding: 8px 20px;
     font-size: 1rem;
 }
-.filter-btn.activated, .filter-btn:hover {
-    background-color: rgb(59, 59, 255);
+.filter-btn.active {
+    background-color: var(--accent-color);
+}
+.filter-btn:hover {
+    background-color: var(--button-hover-color);
 }
 
 /* Task section */
@@ -138,7 +170,7 @@ header {
     justify-content: center;
     gap: 5px;
     padding: 5px;
-    background-color: #eef2f7;
+    background-color: var(--secondary-bg-color);
     border-radius: 12px;
     margin-bottom: 30px;
 }
@@ -146,7 +178,8 @@ header {
     list-style: none;
 }
 .task-item {
-    background-color: #ffffff;
+    color: var(--text-color);
+    background-color: var(--bg-color);
     padding: 20px;
     border-radius: 8px;
     display: flex;
@@ -176,22 +209,22 @@ header {
 }
 .edit-task {
     border: none;
-    background-color: rgba(141, 141, 141, 0.3);
+    background-color: var(--edit-btn-bg);
     border-radius: 8px;
 }
 .edit-task svg {
-    fill: rgb(100, 100, 100);
+    fill: var(--edit-btn);
     height: 28px;
     width: 28px;
     padding: 5px;
 }
 .delete-task {
     border: none;
-    background-color: rgba(255, 70, 70, 0.3);
+    background-color: var(--delete-btn-bg);
     border-radius: 8px;
 }
 .delete-task svg {
-    fill: rgb(255, 40, 40);
+    fill: var(--delete-btn);
     height: 28px;
     width: 28px;
     padding: 5px;
@@ -208,11 +241,11 @@ header {
 }
 .tasks-remaining {
     font-size: 0.9rem;
-    color: rgb(30, 30, 30);
+    color: var(--text-color);
 }
 .statistics {
     font-size: 0.8rem;
-    color: rgb(80, 80, 80);
+    color: var(--edit-btn);
 }
 #clear-completed-tasks {
     display: flex;
@@ -222,16 +255,16 @@ header {
     padding: 8px 10px;
     border: none;
     border-radius: 8px;
-    background-color: rgba(255, 70, 70, 0.3);
+    background-color: var(--delete-btn-bg);
 }
 #clear-completed-tasks svg {
     height: 20px;
     width: 20px;
-    fill: rgb(255, 40, 40);
+    fill: var(--delete-btn);
 }
 #clear-completed-tasks span {
     font-size: 1.1em;
-    color: rgb(253, 2, 2);
+    color: var(--delete-btn);
 }
 
 /* Mobile layout */
@@ -312,8 +345,8 @@ header {
         left: 0;
         right: 0;
         z-index: 10;
-        background-color: #ffffff;
-        border-top: 2px solid #eef2f7;
+        background-color: var(--bg-color);
+        border-top: 2px solid var(--secondary-bg-color);
     }
     .task-summary {
         padding: 10px 20px;
