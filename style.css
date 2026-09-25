@@ -114,7 +114,7 @@ header {
     justify-content: center;
     align-items: center;
     gap: 5px;
-    padding-bottom: 40px;
+    /* padding-bottom: 40px; */
 }
 #task-input {
     font-size: 1.2rem;
@@ -138,6 +138,16 @@ header {
 }
 #add-task:hover {
     background-color: var(--button-hover-color);
+}
+#task-input.input-error {
+    border-color: #e53935;
+}
+#error-message {
+    padding: 0;
+    font-size: 0.8rem;
+    color: #e53935;
+    min-height: 1.5em;
+    margin: 5px 0 20px 10px;
 }
 
 /* Task filters */
@@ -225,6 +235,38 @@ header {
 }
 .delete-task svg {
     fill: var(--delete-btn);
+    height: 28px;
+    width: 28px;
+    padding: 5px;
+}
+/* Task edits */
+.edit-input {
+    border: none;
+    font-size: 1.2rem;
+    outline: none;
+}
+.edit-input:focus {
+    border-bottom: 1px solid var(--line-color);
+    outline: none;
+}
+.cancel-edit {
+    border: none;
+    background-color: var(--delete-btn-bg);
+    border-radius: 8px;
+}
+.cancel-edit svg {
+    fill: var(--delete-btn);
+    height: 28px;
+    width: 28px;
+    padding: 5px;
+}
+.save-edit {
+    border: none;
+    background-color: #02ff2433;
+    border-radius: 8px;
+}
+.save-edit svg {
+    fill: #0aff02;
     height: 28px;
     width: 28px;
     padding: 5px;

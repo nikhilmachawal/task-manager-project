@@ -11,6 +11,7 @@ const toggleTheme = document.querySelector("#theme-toggle")
 const taskForm = document.getElementById("task-form")
 const taskInput = document.getElementById("task-input")
 const addTask = document.getElementById("add-task")
+const errorMessage = document.querySelector("#error-message")
 const filters = document.querySelectorAll(".filter-btn")
 const filterAll = document.querySelector('[data-filter="all"]')
 const filterActive = document.querySelector('[data-filter="active"]')
@@ -101,12 +102,19 @@ filters.forEach(filter => {
 // Task creation
 taskForm.addEventListener("submit", (event) => {
     event.preventDefault()
-
-    const now = Date.now();
+    const taskText = taskInput.value.trim()
+    if (!taskText) {
+        errorMessage.textContent = "Task cannot be empty"
+        taskInput.classList.add("input-error")
+        return
+    }
+    errorMessage.textContent = ""
+    taskInput.classList.remove("input-error")
+    const now = Date.now()
     const newTask = {
         // id: crypto.randomUUID(),
         id: now,
-        text: taskInput.value.trim(),
+        text: taskText,
         completed: false,
         dateCreated: now
     }
@@ -137,6 +145,9 @@ taskList.addEventListener("change", (event) => {
 taskList.addEventListener("click", (event) => {
     const deleteButton = event.target.closest(".delete-task")
     const editButton = event.target.closest(".edit-task")
+    const cancelButton = event.target.closest(".cancel-edit")
+    const saveButton = event.target.closest(".save-edit")
+
     // Delete task
     if (deleteButton) {
         const taskItem = deleteButton.closest(".task-item");
@@ -150,7 +161,57 @@ taskList.addEventListener("click", (event) => {
         const taskItem = editButton.closest(".task-item");
         const taskId = taskItem.dataset.id;
         const task = tasks.find(task => String(task.id) === taskId)
+        const taskText = taskItem.querySelector(".task-text")
+
+        const editInput = document.createElement("input")
+        editInput.setAttribute("type" ,"text")
+        editInput.classList.add("edit-input")
+        editInput.setAttribute("value" ,task.text)
+
+        taskText.replaceWith(editInput)
+        editInput.focus()
+        editInput.select()
+        
+        editInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault()
+                const saveButton = taskItem.querySelector(".save-edit")
+                saveButton.click()
+            }
+        })
+
+        const deleteTaskButton = taskItem.querySelector(".delete-task")
+        editButton.outerHTML = `
+            <button class="cancel-edit" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
+            </button>
+        `
+        deleteTaskButton.outerHTML = `
+            <button class="save-edit" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg>
+            </button>
+        `
     }
+    // Cancel edit
+    if (cancelButton) {
+        renderTasks()
+    }
+    // Save edit
+    if (saveButton) {
+        const taskItem = saveButton.closest(".task-item");
+        const taskId = taskItem.dataset.id;
+        const task = tasks.find(task => String(task.id) === taskId)
+        const editInput = taskItem.querySelector(".edit-input")
+
+        const newText = editInput.value.trim()
+        if (newText === "") {
+            console.log("Cannot leave the task empty");
+        } else {
+            task.text = newText
+            renderTasks()
+        }
+    }
+
 })
 
 // Clear completed tasks
