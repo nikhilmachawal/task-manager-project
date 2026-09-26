@@ -18,6 +18,8 @@
     --delete-btn-bg: #ff46464d;
     --edit-btn: #646464;
     --edit-btn-bg: #8d8d8d4d;
+    --save-btn: #0aff02;
+    --save-btn-bg: #02ff2433;
 }
 body.dark {
     --bg-color: #343437;
@@ -32,6 +34,8 @@ body.dark {
     --delete-btn-bg: #454545;
     --edit-btn: #dddddd;
     --edit-btn-bg: #454545;
+    --save-btn: #0aff02;
+    --save-btn-bg: #454545;
 }
 body {
     font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -142,6 +146,9 @@ header {
 #task-input.input-error {
     border-color: #e53935;
 }
+#task-input.input-error {
+    border: 1px solid #e53935;
+}
 #error-message {
     padding: 0;
     font-size: 0.8rem;
@@ -249,6 +256,8 @@ header {
     border: none;
     font-size: 1.2rem;
     outline: none;
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
 .edit-input:focus {
     border-bottom: 1px solid var(--line-color);
@@ -267,11 +276,11 @@ header {
 }
 .save-edit {
     border: none;
-    background-color: #02ff2433;
+    background-color: var(--save-btn-bg);
     border-radius: 8px;
 }
 .save-edit svg {
-    fill: #0aff02;
+    fill: var(--save-btn);
     height: 28px;
     width: 28px;
     padding: 5px;

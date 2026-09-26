@@ -91,7 +91,7 @@ function renderTasks() {
             year: "numeric"
         })
         taskList.insertAdjacentHTML("afterbegin", `
-            <li class="task-item" data-id="${task.id}">
+            <li class="task-item ${task.completed ? "completed" : ""}" data-id="${task.id}">
                 <label>
                     <input type="checkbox" class="task-checkbox" ${task.completed ? "checked" : ""}>
                     <span class="task-text">${task.text}</span>
@@ -204,17 +204,19 @@ taskList.addEventListener("click", (event) => {
 
     // Delete task
     if (deleteButton) {
-        const taskItem = deleteButton.closest(".task-item");
-        const taskId = taskItem.dataset.id;
+        const taskItem = deleteButton.closest(".task-item")
+        const taskId = taskItem.dataset.id
         const index = tasks.findIndex(task => String(task.id) === taskId)
-        tasks.splice(index, 1)
-        saveTasks()
-        renderTasks()
+        if (index !== -1) {
+            tasks.splice(index, 1)
+            saveTasks()
+            renderTasks()
+        }
     }
     // Edit task
     if (editButton) {
-        const taskItem = editButton.closest(".task-item");
-        const taskId = taskItem.dataset.id;
+        const taskItem = editButton.closest(".task-item")
+        const taskId = taskItem.dataset.id
         const task = tasks.find(task => String(task.id) === taskId)
         const taskText = taskItem.querySelector(".task-text")
 
@@ -253,15 +255,17 @@ taskList.addEventListener("click", (event) => {
     }
     // Save edit
     if (saveButton) {
-        const taskItem = saveButton.closest(".task-item");
+        const taskItem = saveButton.closest(".task-item")
         const taskId = taskItem.dataset.id;
         const task = tasks.find(task => String(task.id) === taskId)
         const editInput = taskItem.querySelector(".edit-input")
 
         const newText = editInput.value.trim()
         if (newText === "") {
-            console.log("Cannot leave the task empty");
+            errorMessage.textContent = "Task cannot be empty"
+            return
         } else {
+            errorMessage.textContent = ""
             task.text = newText
             saveTasks()
             renderTasks()
