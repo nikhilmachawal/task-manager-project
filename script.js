@@ -79,12 +79,33 @@ function renderTasks() {
     completedTasks.textContent = `${completed} completed`
 }
 
+function loadTheme() {
+    const savedTheme = localStorage.getItem("theme")
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark")
+    }
+}
+
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+}
+
+function loadTasks() {
+    const savedTasks = localStorage.getItem("tasks")
+    if (savedTasks) {
+        tasks = JSON.parse(savedTasks)
+    }
+}
+
 let currentFilter = "all"
+loadTheme()
+loadTasks()
 renderTasks()
 
 // Theme button
 toggleTheme.addEventListener("click", () => {
     document.body.classList.toggle("dark")
+    localStorage.setItem("theme", document.body.classList.contains("dark") ? "dark" : "light")
 })
 
 // Filter button
@@ -120,6 +141,7 @@ taskForm.addEventListener("submit", (event) => {
     }
 
     tasks.push(newTask)
+    saveTasks()
     renderTasks()
     taskInput.value = ""
 })
@@ -138,6 +160,7 @@ taskList.addEventListener("change", (event) => {
     if (task) {
         task.completed = !task.completed
     }
+    saveTasks()
     renderTasks()
 })
 
@@ -154,6 +177,7 @@ taskList.addEventListener("click", (event) => {
         const taskId = taskItem.dataset.id;
         const index = tasks.findIndex(task => String(task.id) === taskId)
         tasks.splice(index, 1)
+        saveTasks()
         renderTasks()
     }
     // Edit task
@@ -208,6 +232,7 @@ taskList.addEventListener("click", (event) => {
             console.log("Cannot leave the task empty");
         } else {
             task.text = newText
+            saveTasks()
             renderTasks()
         }
     }
@@ -217,5 +242,6 @@ taskList.addEventListener("click", (event) => {
 // Clear completed tasks
 clearCompletedBtn.addEventListener("click", () => {
     tasks = tasks.filter(task => !task.completed)
+    saveTasks()
     renderTasks()
 })
