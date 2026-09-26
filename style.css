@@ -187,6 +187,11 @@ header {
 .task-list li {
     list-style: none;
 }
+.empty-state {
+    text-align: center;
+    padding: 30px 10px;
+    color: var(--text-color);
+}
 .task-item {
     color: var(--text-color);
     background-color: var(--bg-color);

@@ -23,22 +23,66 @@ const activeTasks = document.querySelector(".active-count")
 const completedTasks = document.querySelector(".completed-count")
 const clearCompletedBtn = document.querySelector("#clear-completed-tasks")
 
+function getVisibleTasks() {
+    if (currentFilter === "all") {
+        return tasks;
+    }
+    else if (currentFilter === "active") {
+        return tasks.filter(task => !task.completed)
+    }
+    else if (currentFilter === "completed") {
+        return tasks.filter(task => task.completed)
+    }
+}
+
+function updateSummary() {
+    const total = tasks.length
+    const active = tasks.filter(task => !task.completed).length
+    const completed = total - active
+
+    filterAll.textContent = `All (${total})`
+    filterActive.textContent = `Active (${active})`
+    filterCompleted.textContent = `Completed (${completed})`
+
+    tasksRemaining.textContent = `${active} tasks remaining`
+    totalTasks.textContent = `${total} total •`
+    activeTasks.textContent = `${active} active •`
+    completedTasks.textContent = `${completed} completed`
+}
+
+function renderEmptyState() {
+    let message = ""
+    if (currentFilter === "all") {
+        message = "No tasks yet, Create new task."
+    }
+    else if (currentFilter === "active") {
+        message = "No active tasks."
+    }
+    else if (currentFilter === "completed") {
+        message = "No completed tasks"
+    }
+    taskList.innerHTML = `
+        <li class="empty-state">${message}</li>
+    `
+}
+
 // Rendering tasks
 function renderTasks() {
     taskList.textContent = ""
 
-    let visibleTasks;
+    // Determine visible tasks
+    const visibleTasks = getVisibleTasks()
 
-    if (currentFilter === "all") {
-        visibleTasks = tasks;
-    }
-    else if (currentFilter === "active") {
-        visibleTasks = tasks.filter(task => !task.completed)
-    }
-    else if (currentFilter === "completed") {
-        visibleTasks = tasks.filter(task => task.completed)
+    // Calculate/update counters
+    updateSummary()
+
+    // Empty state handling
+    if (visibleTasks.length === 0) {
+        renderEmptyState()
+        return
     }
 
+    //Rendering visible tasks
     visibleTasks.forEach(task => {
         const date = new Date(task.dateCreated);
         const formattedDate = date.toLocaleDateString("en-GB", {
@@ -64,19 +108,6 @@ function renderTasks() {
             </li>
         `)
     })
-
-    const total = tasks.length
-    const active = tasks.filter(task => !task.completed).length
-    const completed = total - active
-
-    filterAll.textContent = `All (${total})`
-    filterActive.textContent = `Active (${active})`
-    filterCompleted.textContent = `Completed (${completed})`
-
-    tasksRemaining.textContent = `${active} tasks remaining`
-    totalTasks.textContent = `${total} total •`
-    activeTasks.textContent = `${active} active •`
-    completedTasks.textContent = `${completed} completed`
 }
 
 function loadTheme() {
